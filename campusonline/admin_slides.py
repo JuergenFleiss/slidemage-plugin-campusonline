@@ -48,7 +48,7 @@ def language_warning(language: str, detail: course_schedule.CourseDetail) -> str
 
 def sessions_frame(table: str, language: str = "de") -> str:
     """The frame around a sessions table, titled in `language`."""
-    title = course_schedule.LABELS.get(language, course_schedule.LABELS["de"])["title"]
+    title = course_schedule.LABELS.get(language, course_schedule.LABELS["en"])["title"]
     return "\n".join((r"\begin{standardframe}{" + title + "}", table.strip(), r"\end{standardframe}"))
 
 
@@ -63,7 +63,7 @@ def plan_slides(
     if detail is not None:
         specs.append((TITLE_SLIDE, course_schedule.render_title_slide(detail, lecturers)))
     if group is not None:
-        if language == "en":
+        if language != "de":        # the schedule is German; any other deck gets it in English
             group = course_schedule.translate_schedule(course_schedule.CourseSchedule((group,))).groups[0]
         table = course_schedule.render_group_table(group, language)
         specs.append((SESSIONS_SLIDE, sessions_frame(table, language)))

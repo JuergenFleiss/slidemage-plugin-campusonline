@@ -250,6 +250,9 @@ class FakeHost:
         self._write(deck, new_text)
         return new_text
 
+    def project_languages(self) -> list[str]:
+        return ["en", "de"]
+
     def deck_language(self, deck) -> str:
         """"en" if the preamble mentions english, else "de"."""
         begin = deck.text.find("\\begin{document}")
