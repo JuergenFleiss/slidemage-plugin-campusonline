@@ -46,6 +46,14 @@ def test_english_deck_gets_a_translated_sessions_table():
     assert "Zeit" not in source and "Abhaltungstermine" not in source
 
 
+
+def test_a_deck_in_another_language_gets_the_english_wording():
+    source = admin_slides.plan_slides("fr", group=GROUP)[0][1]
+    assert r"\begin{standardframe}{Course sessions}" in source and "SR 15.25 & Class — Preliminary meeting" in source
+    assert course_schedule._localized({"value": "Kurs", "translations": {"translation": [
+        {"lang": "de", "value": "Kurs"}, {"lang": "en", "value": "Course"}]}}, "fr") == "Course"
+
+
 @pytest.mark.parametrize(("deck_language", "taught", "warned"), [
     ("en", ("de",), True),
     ("de", ("de",), False),

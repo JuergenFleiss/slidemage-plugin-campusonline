@@ -388,16 +388,16 @@ def fetch_course_detail(course_url: str, language: str = "de") -> CourseDetail:
 
 
 def _localized(langdata: dict | None, language: str = "de") -> str:
-    """A UGO "langdata" field's text in `language`, else German, else its
-    default value -- stripped, since UGO's translations can carry stray
-    whitespace."""
+    """A UGO "langdata" field's text in `language`, else English for a language
+    UGO has no text in (a French deck), else German, else its default value --
+    stripped, since UGO's translations can carry stray whitespace."""
     if not langdata:
         return ""
     translations = {
         translation.get("lang"): translation.get("value")
         for translation in (langdata.get("translations") or {}).get("translation") or []
     }
-    for lang in (language, "de"):
+    for lang in dict.fromkeys((language, "de" if language == "de" else "en", "de")):
         if translations.get(lang):
             return translations[lang].strip()
     return (langdata.get("value") or "").strip()
@@ -621,7 +621,7 @@ def render_group_table(group: CourseGroup, language: str = "de") -> str:
     """Render one group as safe LaTeX that can be placed inside a frame,
     with the column headings in `language` ("de" or "en"). The cells are
     used as they are -- translate_schedule() first for an English deck."""
-    labels = LABELS.get(language, LABELS["de"])
+    labels = LABELS.get(language, LABELS["en"])      # a language without labels of its own gets English
     if not group.sessions:
         return ("\\small \\textbf{" + _escape_latex(group.name) + "}\\par "
                 + labels["no_sessions"])

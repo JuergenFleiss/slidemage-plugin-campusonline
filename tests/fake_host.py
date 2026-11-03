@@ -250,6 +250,9 @@ class FakeHost:
         self._write(deck, new_text)
         return new_text
 
+    def project_languages(self) -> list[str]:
+        return ["en", "de"]
+
     def deck_language(self, deck) -> str:
         """"en" if the preamble mentions english, else "de"."""
         begin = deck.text.find("\\begin{document}")
@@ -298,6 +301,63 @@ class FakeHost:
 
     def credentials(self, *args, **kwargs) -> Any:
         raise NotImplementedError("credentials: CampusOnline doesn't use it")
+
+    def ai_chat(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("ai_chat: CampusOnline doesn't use it")
+
+    def project_root(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("project_root: CampusOnline doesn't use it")
+
+    def deck_output_folder(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("deck_output_folder: CampusOnline doesn't use it")
+
+    def deck_slides(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("deck_slides: CampusOnline doesn't use it")
+
+    def slide_source(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("slide_source: CampusOnline doesn't use it")
+
+    def open_slide(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("open_slide: CampusOnline doesn't use it")
+
+    def debug_enabled(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("debug_enabled: CampusOnline doesn't use it")
+
+    def Window(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("Window: CampusOnline doesn't use it")
+
+    def Card(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("Card: CampusOnline doesn't use it")
+
+    def SegmentedControl(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("SegmentedControl: CampusOnline doesn't use it")
+
+    def Badge(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("Badge: CampusOnline doesn't use it")
+
+    def ElidedLabel(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("ElidedLabel: CampusOnline doesn't use it")
+
+    def RowButton(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("RowButton: CampusOnline doesn't use it")
+
+    def PlainList(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("PlainList: CampusOnline doesn't use it")
+
+    def Label(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("Label: CampusOnline doesn't use it")
+
+    def ModalSheet(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("ModalSheet: CampusOnline doesn't use it")
+
+    def toast(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("toast: CampusOnline doesn't use it")
+
+    def theme(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("theme: CampusOnline doesn't use it")
+
+    def on_theme_changed(self, *args, **kwargs) -> Any:
+        raise NotImplementedError("on_theme_changed: CampusOnline doesn't use it")
 
     def acquire_route_task(self, *args, **kwargs) -> Any:
         raise NotImplementedError("acquire_route_task: CampusOnline doesn't use it")
